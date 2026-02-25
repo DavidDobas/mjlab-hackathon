@@ -34,7 +34,7 @@ One testing `csv` file from the LAFAN dataset can be found in `data/fight1_subje
 On your **local device**, you can visualize the csv file by using `scripts/rerun_visualize.py`.
 
 ```bash
-python scripts/rerun_visualize.py data/fight1_subject2.csv
+python scripts/rerun_visualize.py --file_name data/fight1_subject2.csv
 ```
 
 ### Training
