@@ -1,11 +1,16 @@
 # mjlab - hackathon README
 
 ## Installation
+
+**Nebius instance**
+
 If you are running our nebius container, everything is set up. You can activate the virtual environment by
 
 ```bash
 source .venv/bin/activate
 ```
+
+**Locally**
 
 If you are running locally on your computer, make sure you have `uv` installed. If not, install using
 
@@ -39,42 +44,48 @@ When you are happy with your motion, you can train a policy for it.
   - Make a Weights & Biases account
   - Create a Registry called `Motions`
   - Log in to Weights & Biases in the command line
-  ```bash
-  wandb login
-  ```
+    ```bash
+    wandb login
+    ```
 
 2. **Preprocess the motion for training**
-  Run the following command. It will preprocess the `csv` file and upload it to the `Motions` registry. That will than be used in training. You can do this locally or on the remote device.
-  ```bash
-  python scr/mjlab/scripts/csv_to_npz.py --input_file {motion_name}.csv --input_fps 30 --output_name {motion_name}
-  ```
+    Run the following command. It will preprocess the `csv` file and upload it to the `Motions` registry. That will than be used in training. You can do this locally or on the remote device.
+    ```bash
+    python scr/mjlab/scripts/csv_to_npz.py --input_file {motion_name}.csv --input_fps 30 --output_name {motion_name}
+    ```
 
 3. **Train**
-  On the **GPU instance**, run
-  ```bash
-  uv run train Mjlab-Tracking-Flat-Unitree-G1 
-  --registry-name  {your_organization}-org/wandb-registry-Motions/{motion_name} \
-  --env.scene.num-envs 8192 \
-  --agent.wandb-project {your-project-name} \
-  --agent.max-iterations 10000
-  ```
-  Replace `{motion-name}` based on how you called the motion in previous step. Choose `{your-project-name}` as you want, this will be the name visible in Weights & Biases
+    On the **GPU instance**, run
+    ```bash
+    uv run train Mjlab-Tracking-Flat-Unitree-G1 
+    --registry-name  {your_organization}-org/wandb-registry-Motions/{motion_name} \
+    --env.scene.num-envs 8192 \
+    --agent.wandb-project {your-project-name} \
+    --agent.max-iterations 10000
+    ```
+    Replace `{motion-name}` based on how you called the motion in previous step. Choose `{your-project-name}` as you want, this will be the name visible in Weights & Biases
 
 4. **Monitor in Weights & Biases**
-  Log in to your Weights & Biases account in the browser and watch the training graphs
+    Log in to your Weights & Biases account in the browser and watch the training graphs
 
 5. **Visualize your training**
-  Back on your *local device*, you can visualize the training. First, in Weights & Biases, find the corresponding training run and in `overview` section find the `Run path`. The use it in the following command:
-  ```bash
-  uv run play Mjlab-Tracking-Flat-Unitree-G1 --wandb-run-path {run_path} --num-envs 1
-  ```
-  If you are *on Mac*, you will need to run instead
-  ```bash
-   uv run mjpython -m mjlab.scripts.play Mjlab-Tracking-Flat-Unitree-G1 --wandb-run-path {run_path} --num-envs 1
-  ```
+    Back on your *local device*, you can visualize the training. First, in Weights & Biases, find the corresponding training run and in `overview` section find the `Run path`. The use it in the following command:
+    ```bash
+    uv run play Mjlab-Tracking-Flat-Unitree-G1 --wandb-run-path {run_path} --num-envs 1
+    ```
+    If you are **on Mac**, you will need to run instead
+    ```bash
+    uv run mjpython -m mjlab.scripts.play Mjlab-Tracking-Flat-Unitree-G1 --wandb-run-path {run_path} --num-envs 1
+    ```
 
 6. **Get the ONNX file for deployment**
-  When training is done, you can find the corresponding run in Weights & Biases. In the `Files` section, you can find the ONNX file, which can be used for deployment.
+    When training is done, you can find the corresponding run in Weights & Biases. In the `Files` section, you can find the ONNX file, which can be used for deployment.
+
+---
+
+Below is the original mjlab README
+
+---
 
 ![Project banner](https://raw.githubusercontent.com/mujocolab/mjlab/main/docs/source/_static/mjlab-banner.jpg)
 
