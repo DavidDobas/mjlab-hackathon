@@ -34,7 +34,7 @@ One testing `csv` file from the LAFAN dataset can be found in `data/fight1_subje
 On your **local device**, you can visualize the csv file by using `scripts/rerun_visualize.py`.
 
 ```bash
-python scripts/rerun_visualize.py --file_name data/fight1_subject2.csv
+python scripts/rerun_visualize.py data/fight1_subject2.csv
 ```
 
 ### Training
@@ -43,8 +43,7 @@ When you are happy with your motion, you can train a policy for it.
 1. **Prepare Weights & Biases**
   - Make a Weights & Biases account
   - Create a Registry called `Motions`
-  - Get your Weights & Biases API key: click top-right -> User settings -> API keys -> New key
-  - Log in to Weights & Biases in the command line using your API key
+  - Log in to Weights & Biases in the command line
     ```bash
     wandb login
     ```
