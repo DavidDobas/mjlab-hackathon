@@ -43,7 +43,8 @@ When you are happy with your motion, you can train a policy for it.
 1. **Prepare Weights & Biases**
   - Make a Weights & Biases account
   - Create a Registry called `Motions`
-  - Log in to Weights & Biases in the command line
+  - Get your Weights & Biases API key: click top-right -> User settings -> API keys -> New key
+  - Log in to Weights & Biases in the command line using your API key
     ```bash
     wandb login
     ```
