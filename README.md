@@ -51,17 +51,17 @@ When you are happy with your motion, you can train a policy for it.
 2. **Preprocess the motion for training**
     Run the following command. It will preprocess the `csv` file and upload it to the `Motions` registry. That will than be used in training. You can do this locally or on the remote device.
     ```bash
-    python scr/mjlab/scripts/csv_to_npz.py --input_file {motion_name}.csv --input_fps 30 --output_name {motion_name}
+    python src/mjlab/scripts/csv_to_npz.py --input_file {motion_name}.csv --input_fps 30 --output_name {motion_name}
     ```
 
 3. **Train**
     On the **GPU instance**, run
     ```bash
-    uv run train Mjlab-Tracking-Flat-Unitree-G1 
+    uv run train Mjlab-Tracking-Flat-Unitree-G1 \
     --registry-name  {your_organization}-org/wandb-registry-Motions/{motion_name} \
     --env.scene.num-envs 8192 \
     --agent.wandb-project {your-project-name} \
-    --agent.max-iterations 10000
+    --agent.max-iterations 2000
     ```
     Replace `{motion-name}` based on how you called the motion in previous step. Choose `{your-project-name}` as you want, this will be the name visible in Weights & Biases
 
